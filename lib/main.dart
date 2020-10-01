@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_list/model/ListItem.dart';
 
 import 'category.dart';
 
 void main() {
-  final items = List<ListItem>.generate(
+  final items = List<Category>.generate(
     1200,
-        (i) => i % 6 == 0
-        ? HeadingItem("Heading $i")
-        : MessageItem("Sender $i", "Message body $i"),
+    (i) => i % 6 == 0
+        ? Category(
+            name: "Heading $i",
+            color: Colors.greenAccent,
+            iconLocation: Icons.accessibility)
+        : Category(
+            name: "Message body $i",
+            color: Colors.blueAccent,
+            iconLocation: Icons.access_time),
   );
   runApp(UnitConverterApp(items: items));
 }
 
-const _categoryName = 'Cake';
-const _categoryIcon = Icons.cake;
-const _categoryColor = Colors.green;
-
-class UnitConverterApp extends StatelessWidget{
-  final List<ListItem> items;
+class UnitConverterApp extends StatelessWidget {
+  final List<Category> items;
   UnitConverterApp({Key key, @required this.items}) : super(key: key);
 
   @override
@@ -28,7 +29,7 @@ class UnitConverterApp extends StatelessWidget{
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.greenAccent,
+        backgroundColor: Colors.grey,
         appBar: AppBar(
           title: Text(title),
         ),
@@ -39,11 +40,7 @@ class UnitConverterApp extends StatelessWidget{
           // Convert each item into a widget based on the type of item it is.
           itemBuilder: (context, index) {
             final item = items[index];
-
-            return ListTile(
-              title: item.buildTitle(context),
-              subtitle: item.buildSubTitle(context),
-            );
+            return item;
           },
         ),
       ),
