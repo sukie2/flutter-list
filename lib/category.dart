@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-final _rowHeight = 100.0;
+final _rowHeight = 50.0;
 final _borderRadius = BorderRadius.circular(_rowHeight / 2);
 
 class Category extends StatelessWidget{
@@ -22,13 +22,13 @@ class Category extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.transparent,
+      color: this.color,
       child: Container(
         height: _rowHeight,
         child: InkWell(
           borderRadius: _borderRadius,
           highlightColor: Colors.black12,
-          splashColor: Colors.black26,
+          splashColor: this.color,
           onTap: (){
             print("tapped");
           },
@@ -38,10 +38,10 @@ class Category extends StatelessWidget{
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: EdgeInsets.all(8.0),
                   child: Icon(
                     iconLocation,
-                    size: 60.0,
+                    size: 24.0,
                   ),
                 ),
                 Center(
